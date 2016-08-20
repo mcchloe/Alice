@@ -1,9 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    
-</head>
-<body>
-        <iframe src="https://www.pandorabots.com/pandora/talk?botid=ce4151715832563b22e75ca3fcefe2ab">
-</body>
+  <head>
+    <title>Talk.js Example</title>
+    <script src="talk.js"></script>
+    <script>
+  var pb = new Pandorabot("aiaas.pandorabots.com", "1409612960619", "Chloe McDonald's App", "ce4151715832563b22e75ca3fcefe2ab"); // These should match the creds with which you created the bot
+  function doTalk() {
+    var input = document.getElementById("yousay").value;
+    document.getElementById("yousay").value = "";
+    pb.talk(input, function(data) {
+      var response = data["responses"];
+      document.getElementById("response").innerHTML = response;
+      console.log(response);
+    });
+  }
+</script>
+  </head>
+  <body>
+    <h1>Talk to a Pandorabot</h1>
+    <form id="talk" class="boxedin" onsubmit="return false;">
+      <b>You say:</b> <input id="yousay" name="input" size="90" onkeydown="if (event.keyCode == 13) { doTalk(); }"/>
+      <br/>
+      <input id="talkbutton" type="button" value="talk" onclick="doTalk()"/> 
+    </form>
+    <p id="response"></p>
+  </body>
 </html>
